@@ -1,0 +1,70 @@
+/*! hash action javascript 2019-04-04*/ 
+"use strict";
+/**
+ * String Format
+ *  * example: 'Hello {0}! {1}'.format('World', 'Test!!');
+ * result: 'Hello World! Test!!'
+ */ String.prototype.format = function() { let text = this; let args = arguments; if (!text.match(/^(?:(?:(?:[^{}]|(?:\{\{)|(?:\}\}))+)|(?:\{[0-9]+\}))+$/)) { return text.toString(); } return text.replace(/((?:[^{}]|(?:\{\{)|(?:\}\}))+)|(?:\{([0-9]+)\})/g, function(m, str, index) { if (str) { return str.replace(/(?:{{)|(?:}})/g, function(m) { return m[0]; }); } else { if (index >= args.length) { return text; } return args[index]; } }); };
+/* prototype */ /* string zero add */ String.prototype.zeroPad = function(length) { length = length || 2;
+var num = (new Array(length).join('0')+this).slice(length*-1);
+if( num.length <= this.length ) num = this;
+return num; }; /* string replace all */ String.prototype.replaceAll = function(target, replacement) { return this.split(target).join(replacement); }; /* string length */ String.prototype.get_length = function(len) { var len = len?len:6; var len_int = 0; for (var i = 0; i < this.length; i++) { if (escape(this.charAt(i)).length == len) { len_int++; } len_int++; } return len_int; }; /* is_cellphone */ String.prototype.is_cellphone = function() {  var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/; if(this == undefined || this =="") return false; if(!regPhone.test(this)) { return false; } return true; }; /* is_email */ String.prototype.is_email = function() { var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/; if(this == undefined || this =="") return false; if(!regEmail.test(this)) { return false; } return true; }; /* number_format */ String.prototype.number_format = function(d) { if(this == undefined || this =="") return false; var n = this; var c = isNaN(d = Math.abs(d)) ? 2 : d; var s = n < 0 ? "-" : ""; var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0; return s + (j ? i.substr(0, j) + ',' : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + ',') + (c ? '.' + Math.abs(n - i).toFixed(c).slice(2) : ""); }; 
+/* copy string to clipboard */ String.prototype.copytext = function() { if(this == undefined || this =="") { return false; }; var input = document.createElement('input'); input.setAttribute('value', this); document.body.appendChild(input); input.select(); var result = document.execCommand('copy'); document.body.removeChild(input); return result; };
+/* end prototype */ /* HASH START */ function initHASH() { try{ actHASH(document.location.hash, 'load'); } catch(e) {}
+$(window).bind("hashchange", function(e) { actHASH(document.location.hash, 'change'); });
+$( document ).on( "click", "a", function( e ) { try{ if( this.hash ) { return actHASH($(this).attr("href"), $(this)); } } catch(e) {} }); };
+/* HASH STRING */ function getHASHstring(h, h2, chk){ var h = h?h:''; var h2 = h2?h2:''; var chk = chk?chk:'add'; var _hash_chk = getHASH(h); var _hash = getHASH(h2); var hash_string = ''; for( key in _hash ) { hash_string += hash_string ? "&" : "" ; if( chk == "add" ) { if( _hash_chk[key] ) { hash_string += key + "=" + _hash_chk[key]; } else { hash_string += key + "=" + _hash[key]; } } else { if( _hash_chk[key] ) {} else { hash_string += key + "=" + _hash[key]; } } } for( key in _hash_chk ) { hash_string += hash_string ? "&" : "" ; if( _hash[key] ) { } else { hash_string += key + "=" + _hash_chk[key]; } } return "#" + hash_string; };
+/* HASH ARRAY */ function getHASH(hash) { let AGENT = navigator.userAgent.toLowerCase(); let hash_d = hash?hash:document.location.hash; if (AGENT.indexOf("chrome") != -1){ hash_d = decodeURIComponent(hash_d); }else if (AGENT.indexOf("safari") != -1){ hash_d = decodeURIComponent(hash_d); } var _hash = new Array(); if( hash_d.indexOf("#") != -1 && hash_d != '' ) { var hash_string = ""; var hash_str = hash_d.substring(hash_d.indexOf("#")+1, hash_d.length); if( hash_str.indexOf("?") != -1 && ((hash_str.indexOf("&") != -1 && hash_str.indexOf("?") < hash_str.indexOf("&")) || (hash_str.indexOf("=") != -1 && hash_str.indexOf("?") < hash_str.indexOf("="))) ) { var string_page =  hash_str.substring(0, hash_str.indexOf("?")); if( string_page.length>0 ) { var string_page_arr= new Array(); string_page_arr[0] = string_page; if( string_page.indexOf("/") != -1 ) { var string_page_split = string_page.split("/"); for(var i=0;i<string_page_split.length;i++){ string_page_arr[i+1] = string_page_split[i]; } } _hash["string_array"] = string_page_arr; } hash_str = hash_str.substring(hash_str.indexOf("?")+1, hash_str.length); } try{ var hash_arr = hash_str.split("&"); } catch(e) { var hash_arr = hash_str.split("="); if( hash_arr[1] == "" || typeof(hash_arr[1]) == "undefined") { hash_string += hash_arr[0]; } else { _hash[hash_arr[0]] = hash_arr[1]; } } for(var i=0;i<hash_arr.length;i++) { var hash_arr2 = hash_arr[i].split("="); if( hash_arr2[1] == '' || typeof(hash_arr2[1]) == "undefined") { hash_arr2[1] = ''; hash_string += hash_string ? "&" : ""; hash_string += hash_arr2[0]; } else { _hash[hash_arr2[0]] = hash_arr2[1]; } } if( hash_string ) _hash["string"] = hash_string; } return _hash; };
+/* HASH ACTION */ function actHASH(h, obj) { if(typeof(h) == "undefined" || h == "" ) return false;
+var is_process = 0; var _hash = getHASH(h); var obj = obj ? obj : ''; var action = ''; var thisurl = window.location.href.replace(/#.+/, ''); var gourl = ''; var AURL = '';
+if( IS_CONSOLE ) {
+	console.group("actHash");
+	console.log(typeof(obj)=="string"?obj:'Object', _hash);
+}
+if( typeof(obj) == "object" ) { 
+	/**********
+	* OBJECT ACTION 
+	*/
+	AURL = $(obj).attr("href").replace(/#.+/, '')
+	console.log("AURL:",AURL);
+	var msg = $(obj).attr('msg');
+	/** LINK */
+	if(_hash["string"]=="link") { 
+		location.href= AURL + getHASHstring(h, "#string", "del");
+		return false; }
+	/** ALERT */
+	else if(_hash["string"]=="alert") { is_process=1; alert(msg); action = "return false"; }
+	/** CONFIRM */
+	else if(_hash["string"]=="confirm") { is_process=1; if( confirm(msg) ) { if($(obj).attr('link')) { document.location.href=$(obj).attr('link'); } else if ($(obj).attr('func')) { eval($(obj).attr('func')); } action = "return false"; } action = "return false"; }
+}
+/**********
+* HASH ACTION 
+*/
+/** LANGUAGE */
+if ( _hash["lang"] ) { is_process=1; gourl = thisurl; set_language_change(_hash["lang"]); }
+/** MODAL */
+else if (_hash["modal"]) { is_process=1;  get_modal_layer_html(_hash); action = "back"; }
+/** TABS */
+else if (_hash["tabs"]) { is_process=1; if( $("#"+_hash["tabs"]).length || AURL=='' ) { tabs_action(_hash["tabs"], obj); action = "return false"; } else { action = "return true"; } }
+/** POPUP */
+else if (_hash["popup"]) { is_process=1; popup_action(_hash["popup"], obj); action = "return false"; }
+else if (_hash["popup2"]) { is_process=1; popup_action2(_hash["popup2"], obj); action = "return false"; }
+/** ALERT */
+else if(_hash["alert"]) { is_process=1; var msg = decodeURIComponent(_hash["alert"]); msg = msg.replace(/\+/gi, " "); alert(msg); action = "back"; }
+else if(_hash["toast"]) { is_process=1; var msg = decodeURIComponent(_hash["toast"]); msg = msg.replace(/\+/gi, " "); $.alert(msg); action = "back"; }
+else if((_hash["cate"] || _hash["stx"]) && obj=="change") { is_process=1; act_wegift_list(_hash["cate"], _hash["stx"]); act_category_list(true); action = "return true"; }
+else if(_hash["string"]=="!") { is_process=1; action = "return false"; }
+
+if( IS_CONSOLE ) { 
+	console.log("action", action);
+	console.log("referrer", document.referrer );
+	console.log("thisurl", thisurl );
+	console.log("gourl", gourl );
+	console.groupEnd(); }
+if( action == "return true" ) { return true; }
+else if( action == "return false" ) { return false; }
+else if( gourl ) { document.location.href=(gourl); } 
+else if( action == "reload" ) { document.location.reload(true); } 
+else if( is_process == 0 ) { return true; } 
+else if( typeof(obj) == "string" && action == "back" ) { if( obj == 'load' ) document.location.href='#Wemembers'; else history.go(-1); }
+else if( (typeof(obj) == "object" && !_hash["string"]) || action == "false" ) { return false; } return true; };

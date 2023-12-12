@@ -1,0 +1,145 @@
+@charset "utf-8";
+
+
+/* Noto Sans KR (Korean) */
+
+@font-face {
+	font-family:'nts';
+	font-style:normal;
+	font-weight:300;
+	src:url('../font/NotoSans-Light.woff2') format('woff2'),
+		url('../font/NotoSans-Light.woff') format('woff'),
+		url('../font/NotoSans-Light.eot') format('eot'),
+		url('../font/NotoSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'nts';
+	font-style:normal;
+	font-weight:400;
+	src:url('../font/NotoSans-Regular.woff2') format('woff2'),
+		url('../font/NotoSans-Regular.woff') format('woff'),
+		url('../font/NotoSans-Regular.eot') format('eot'),
+		url('../font/NotoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'nts';
+	font-style:normal;
+	font-weight:500;
+	src:url('../font/NotoSans-Medium.woff2') format('woff2'),
+		url('../font/NotoSans-Medium.woff') format('woff'),
+		url('../font/NotoSans-Medium.eot') format('eot'),
+		url('../font/NotoSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'nts';
+	font-style:normal;
+	font-weight:700;
+	src:url('../font/NotoSans-Bold.woff2') format('woff2'),
+		url('../font/NotoSans-Bold.woff') format('woff'),
+		url('../font/NotoSans-Bold.eot') format('eot'),
+		url('../font/NotoSans-Bold.ttf') format('truetype');
+}
+
+
+
+
+
+/* Rajdhani (English) */
+@font-face {
+	font-family:'rajdhani';
+	font-style:normal;
+	font-weight:400;
+	src:url('../font/Rajdhani-Medium.woff2') format('woff2'),
+		url('../font/Rajdhani-Medium.woff') format('woff'),
+		url('../font/Rajdhani-Medium.eot') format('eot'),
+		url('../font/Rajdhani-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'rajdhani';
+	font-style:normal;
+	font-weight:500;
+	src:url('../font/Rajdhani-SemiBold.woff2') format('woff2'),
+		url('../font/Rajdhani-SemiBold.woff') format('woff'),
+		url('../font/Rajdhani-SemiBold.eot') format('eot'),
+		url('../font/Rajdhani-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'rajdhani';
+	font-style:normal;
+	font-weight:600;
+	src:url('../font/Rajdhani-Bold.woff2') format('woff2'),
+		url('../font/Rajdhani-Bold.woff') format('woff'),
+		url('../font/Rajdhani-Bold.eot') format('eot'),
+		url('../font/Rajdhani-Bold.ttf') format('truetype');
+}
+
+
+
+
+
+/* BEBAS (English) */
+@font-face {
+	font-family:'bebas';
+	font-style:normal;
+	src:url('../font/Bebas.woff2') format('woff2'),
+		url('../font/Bebas.woff') format('woff'),
+		url('../font/Bebas.eot') format('eot'),
+		url('../font/Bebas.ttf') format('truetype');
+}
+
+/* SpoqaHanSansNeo */
+
+@font-face {
+	font-family:'SpoqaHanSansNeo';
+	font-style: 900;
+	src:url('../font/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
+		url('../font/SpoqaHanSansNeo-Bold.woff') format('woff'),
+		url('../font/SpoqaHanSansNeo-Bold.eot') format('eot'),
+		url('../font/SpoqaHanSansNeo-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'SpoqaHanSansNeo';
+	font-style: 700;
+	src:url('../font/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
+		url('../font/SpoqaHanSansNeo-Medium.woff') format('woff'),
+		url('../font/SpoqaHanSansNeo-Medium.eot') format('eot'),
+		url('../font/SpoqaHanSansNeo-Medium.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'SpoqaHanSansNeo';
+	font-style: normal;
+	src:url('../font/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
+		url('../font/SpoqaHanSansNeo-Regular.woff') format('woff'),
+		url('../font/SpoqaHanSansNeo-Regular.eot') format('eot'),
+		url('../font/SpoqaHanSansNeo-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family:'SpoqaHanSansNeo';
+	font-style: 400;
+	src:url('../font/SpoqaHanSansNeo-Light.woff2') format('woff2'),
+		url('../font/SpoqaHanSansNeo-Light.woff') format('woff'),
+		url('../font/SpoqaHanSansNeo-Light.eot') format('eot'),
+		url('../font/SpoqaHanSansNeo-Light.ttf') format('truetype');
+}
+
+
+@font-face {
+	font-family:'SpoqaHanSansNeo';
+	font-style: 200;
+	src:url('../font/SpoqaHanSansNeo-Thin.woff2') format('woff2'),
+		url('../font/SpoqaHanSansNeo-Thin.woff') format('woff'),
+		url('../font/SpoqaHanSansNeo-Thin.eot') format('eot'),
+		url('../font/SpoqaHanSansNeo-Thin.ttf') format('truetype');
+}
+
+
+
+

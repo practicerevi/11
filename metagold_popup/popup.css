@@ -1,0 +1,286 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.main-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 검정(rgba(0, 0, 0)) 투명도(0.7) 조절 가능 */
+    z-index: 500; /* 다른 요소 위에 나타나도록 설정 */
+}
+
+.popup-slot {
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    margin: 0 auto;
+    width: 460px;
+    height: 685px;
+    top: 15%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 13px 17px;
+    border-radius: 20px;
+    gap: 0.9375rem;
+    z-index: 501;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+}
+
+.popup-slot.open,
+.popup_play.open {
+    animation-name: fadeIn;
+}
+
+.popup-slot.close {
+    animation-name: fadeOut;
+}
+
+.popup-line-title {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.popup-line-title .popup-logo {
+    width: 50px;
+    height: 50px;
+    background-image: url(/game_icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.popup-line-title button {
+    display: flex;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url(/popup_close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    right: 0;
+}
+
+.popup-line-money {
+    width: 100%;
+    display: grid;
+    flex-direction: row;
+    background-color: #dcf1fa;
+    padding: 10px 5px;
+    border-radius: 5px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.total-bet-area,
+.total-win-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.total-bet-area p,
+.total-win-area p {
+    list-style: square inside;
+}
+
+.total-bet-area p::before,
+.total-win-area p::before {
+    content: "\2022";
+    color: black;
+    margin-top: 10px;
+    margin-right: 3px;
+}
+
+.total-bet-area span,
+.total-win-area span {
+    margin-left: 5px;
+}
+
+.popup-line-main::-webkit-scrollbar {
+    width: 15px; /* 세로축 스크롤바 길이 */
+}
+
+.popup-line-main::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    width: 1px;
+    background-color: #999;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+}
+
+.popup-line-main::-webkit-scrollbar-track {
+    background-color: transparent;
+    box-shadow: transparent;
+}
+
+.popup-line-main {
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.popup-line-main ul {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.popup-line-main ul li {
+    width: 100%;
+    border-radius: 15px;
+    position: relative;
+    border-width: 0;
+    cursor: pointer;
+}
+
+.popup-line-main ul li img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.popup-line-main ul li .popup_play {
+    display: none;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 15px;
+    border-width: 0;
+    transition: All 0.5s ease;
+    -webkit-transition: All 0.5s ease;
+    -moz-transition: All 0.5s ease;
+    -o-transition: All 0.5s ease;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+}
+
+.popup-line-main ul li .popup_play .popup-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #000;
+    opacity: 0.7;
+    border-radius: 15px;
+}
+.popup-line-main ul li .popup_play .popup_play_btn {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #fdad00;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    opacity: 1;
+    background-image: url(/triangle_icon.png);
+    background-position: 18px center;
+    background-repeat: no-repeat;
+    background-size: 45%;
+    z-index: 999;
+    position: relative;
+}
+
+.popup-line-main ul li .popup_play span {
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 15px;
+    z-index: 999;
+    position: relative;
+    word-break: break-all;
+    word-wrap: break-word;
+    -webkit-hyphens: none;
+}
+
+@media all and (max-width: 480px) {
+    .popup-slot {
+        width: 96%;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .popup-slot {
+        width: 96%;
+        height: 616px;
+    }
+    .total-bet-area span,
+    .total-win-area span {
+        margin-left: 0;
+    }
+
+    .total-bet-area,
+    .total-win-area {
+        font-size: 14px;
+    }
+    .total-bet-area,
+    .total-win-area {
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width: 430px) {
+    .popup-slot {
+        width: 96%;
+        height: 585px;
+    }
+    .popup-line-main ul li .popup_play .popup_play_btn {
+        width: 50px;
+        height: 50px;
+        background-position: 15px center;
+        margin-top: 40px;
+    }
+}
+
+@media all and (max-width: 380px) {
+    .popup-slot {
+        width: 96%;
+        height: 465px;
+    }
+    .popup-line-main ul li .popup_play .popup_play_btn {
+        width: 45px;
+        height: 45px;
+        background-position: 15px center;
+        margin-top: 40px;
+        background-size: 40%;
+    }
+    .popup-line-main ul li .popup_play span {
+        font-size: 13px;
+        margin-top: 10px;
+    }
+}
